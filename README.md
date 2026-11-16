@@ -10,6 +10,7 @@
 [![Linux](https://img.shields.io/badge/Linux-AppImage%20%2F%20deb-8B9D83?style=flat-square)](https://island.lgscode.online)
 [![Tauri](https://img.shields.io/badge/Tauri-2-B08B6E?style=flat-square)](https://tauri.app)
 [![Rust](https://img.shields.io/badge/Rust-backend-606C38?style=flat-square)](https://www.rust-lang.org)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-C08E3A?style=flat-square)](LICENSE)
 
 [**Скачать**](https://island.lgscode.online) · [Возможности](#возможности) · [Химера](#химера--своя-нейросеть) · [Сборка](#сборка)
 
@@ -85,6 +86,10 @@ npx tauri build        # сборка установщика под текущу
 ```
 
 `build.sh` и `release-all.sh` — скрипты автора для кросс-сборки Windows-версии на Linux (`cargo-xwin`) и выпуска релиза. Для подписи обновлений нужны свой ключ (`npx tauri signer generate`) и переменная `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`.
+
+## Лицензия
+
+[GPL-3.0](LICENSE) © 2026 Legends team. Можно изучать, менять и распространять — но любая изменённая версия тоже должна оставаться открытой под GPL-3.0 с указанием авторства. Название «Legends Island», логотип и модель Химера в лицензию не входят.
 
 ## Благодарности
 

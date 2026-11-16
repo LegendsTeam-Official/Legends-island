@@ -1,3 +1,12 @@
-{ "name": "legends-island", "private": true, "version": "0.1.0",
-  "devDependencies": { "@tauri-apps/cli": "^2" },
-  "dependencies": { "@fontsource/lora": "^5" } }
+{
+  "name": "legends-island",
+  "private": true,
+  "version": "0.1.0",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  },
+  "dependencies": {
+    "@fontsource/lora": "^5"
+  },
+  "license": "GPL-3.0-only"
+}
