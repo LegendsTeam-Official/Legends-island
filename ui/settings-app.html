@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--legends-island-ui-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Legends Island — настройки</title>
+<style>
+  @font-face{font-family:Lora;font-weight:600;src:url(fonts/lora-cyrillic-600-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+  @font-face{font-family:Lora;font-weight:600;src:url(fonts/lora-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+  :root{--sand:#E8DCC7;--oat:#D4B895;--ink:#3B3128;--bark:#2B231D;--accent:#C66B3D;--ease:cubic-bezier(.34,1.45,.5,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:"Segoe UI Variable Text","Segoe UI",Ubuntu,"Noto Sans",Cantarell,system-ui,sans-serif;color:var(--ink);background:var(--sand);overflow-y:auto;user-select:none}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:14px 14px 10px 22px;background:var(--sand)}
+  .bar img{width:26px;height:26px;border-radius:7px}
+  .bar h1{font-family:Lora,Georgia,serif;font-weight:600;font-size:20px;flex:1}
+  .x{width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+  .x:hover{background:#ddcfb6}
+  .x svg{width:16px;height:16px}
+  main{padding:4px 22px 26px}
+  .sec{background:#efe5d3;border-radius:22px;padding:16px;margin-top:12px}
+  .sec h3{font-family:Lora,Georgia,serif;font-weight:600;font-size:15px;margin-bottom:10px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .seg button{border:2px solid transparent;background:var(--sand);border-radius:16px;padding:11px;text-align:left;font:inherit;cursor:pointer;color:var(--ink)}
+  .seg button b{display:block;font-size:13px;font-weight:600}
+  .seg button span{font-size:12px;color:#7a6855}
+  .seg button.on{border-color:var(--accent)}
+  .sw{display:flex;gap:10px}
+  .sw button{width:34px;height:34px;border-radius:50%;border:3px solid #efe5d3;outline:2px solid transparent;cursor:pointer}
+  .sw button.on{outline-color:var(--ink)}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px}
+  .row small{display:block;color:#7a6855;font-size:12px}
+  .tg{appearance:none;width:42px;height:24px;border-radius:12px;background:#cbbba0;position:relative;cursor:pointer;transition:background .3s;flex:none}
+  .tg::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff8ee;transition:transform .35s var(--ease)}
+  .tg:checked{background:var(--accent)}
+  .tg:checked::after{transform:translateX(18px)}
+  input[type=range]{width:140px;accent-color:var(--accent)}
+  .btn{font:inherit;font-size:13px;font-weight:600;border:0;border-radius:14px;padding:9px 14px;background:var(--bark);color:var(--sand);cursor:pointer;flex:none}
+  .btn:hover{background:#3A2F27}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .ok{color:#606C38;font-weight:600;font-size:13px}
+  .msg{font-size:12px;color:#7a6855;margin-top:6px;min-height:16px}
+  .msg:empty{display:none}
+  code{font-family:Consolas,monospace;font-size:12px;background:var(--sand);padding:2px 6px;border-radius:6px;user-select:text}
+  .conn{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:13px}
+  .conn b{display:block;font-weight:600}
+  .conn small{display:block;color:#7a6855;font-size:12px}
+  .conn .grow{flex:1}
+  .cico{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .cico svg{width:17px;height:17px}
+  .aimem{font-size:12px;line-height:1.5;color:#5a4a3c;background:var(--sand);border-radius:14px;padding:10px 12px;margin-top:6px}
+  .aimem b{color:var(--ink)}
+  .aimem.warn{background:#f3d9c6;color:#7a3a1a}
+  .pbar{height:8px;border-radius:4px;background:#d5c6ab;overflow:hidden;margin-top:10px}
+  .pbar b{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+  details.own{margin-top:10px;font-size:13px}
+  details.own summary{cursor:pointer;color:#7a6855}
+  details.own input{font:inherit;font-size:13px;border:1.5px solid #d5c6ab;border-radius:12px;padding:8px 10px;background:#fff8ee;color:var(--ink);min-width:0}
+  details.own small{display:block;color:#7a6855;font-size:12px;margin-top:6px}
+  .quit{display:block;margin:18px auto 0;background:none;border:0;font:inherit;font-size:13px;color:#a2502a;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="bar" data-tauri-drag-region>
+  <img src="icon.png" alt="" data-tauri-drag-region>
+  <h1 data-tauri-drag-region>Legends Island</h1>
+  <button class="x" title="Закрыть" onclick="invoke('close_window')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+<main>
+  <div class="sec"><h3>Стиль</h3>
+    <div class="seg">
+      <button id="st-float" onclick="set({style:'float'})"><b>Плавающий</b><span>Чуть ниже края экрана</span></button>
+      <button id="st-edge" onclick="set({style:'edge'})"><b>У края</b><span>Вырастает из края</span></button>
+    </div>
+  </div>
+
+  <div class="sec"><h3>Цвет</h3><div class="sw" id="sw"></div></div>
+
+  <div class="sec"><h3>Поведение</h3>
+    <div class="row">Тянуться к курсору<input type="checkbox" class="tg" id="magnet"></div>
+    <div class="row">Сила притяжения<input type="range" id="strength" min="0.1" max="1" step="0.05"></div>
+    <div class="row">Дыхание в покое<input type="checkbox" class="tg" id="breathe"></div>
+    <div class="row">Желе по всему краю<input type="checkbox" class="tg" id="jelly"></div>
+    <div class="row">Отрыв капель<input type="checkbox" class="tg" id="drops"></div>
+    <div class="row" id="pulseRow">Пульс под музыку<input type="checkbox" class="tg" id="pulse"></div>
+  </div>
+
+  <div class="sec"><h3>Уведомления</h3>
+    <div class="row"><span>Загрузки<small>Когда в папке «Загрузки» появляется готовый файл</small></span><input type="checkbox" class="tg" id="notify_downloads"></div>
+    <div class="row"><span>Музыка<small>Показывать новый трек из любого плеера</small></span><input type="checkbox" class="tg" id="notify_media"></div>
+  </div>
+
+  <div class="sec"><h3>ИИ — Химера</h3>
+    <div class="conn">
+      <span class="cico" style="background:transparent;width:40px;height:40px"><svg viewBox="0 0 24 24" style="width:40px;height:40px"><circle cx="12" cy="12" r="11" fill="#C66B3D"/><path d="M12 5.2c1.9 0 3.1 1.4 3.1 3.1 0 1.1-.6 2-1.3 2.6.9-.3 2-.3 2.9.3 1.5.9 1.9 2.8.9 4.2-.9 1.5-2.8 1.8-4.2.9-.5-.3-.9-.8-1.1-1.3-.2.6-.5 1.1-1 1.5-1.4 1-3.3.8-4.3-.6-1-1.3-.8-3.2.5-4.2.8-.6 1.7-.8 2.6-.6-.8-.5-1.3-1.5-1.3-2.5 0-1.7 1.3-3.4 3.2-3.4Z" fill="#2B231D"/><circle cx="12" cy="11.9" r="1.3" fill="#E8DCC7"/></svg></span>
+      <span class="grow"><b id="aiName">Химера 9B</b><small id="aiSub">Своя нейросеть Legends — работает прямо на этом ПК, без интернета</small></span>
+      <span id="aiBtns"></span>
+    </div>
+    <div class="conn" id="aiFlashCard" style="display:none;margin-top:8px">
+      <span class="cico" style="background:#E9A24B;width:40px;height:40px;display:grid;place-items:center"><svg viewBox="0 0 24 24" style="width:24px;height:24px"><path d="M13 2 4.5 13.5H11L10 22l9-12h-6.2L13 2Z" fill="#2B231D"/></svg></span>
+      <span class="grow"><b id="flName">Chimera Flash</b><small id="flSub">для быстрой работы</small></span>
+      <span id="flBtns"></span>
+    </div>
+    <div class="aimem" id="aiMem"></div>
+    <div id="aiProgWrap" style="display:none"><div class="pbar"><b id="aiBar"></b></div><div class="msg" id="aiProgTxt"></div></div>
+    <div class="msg" id="aiMsg"></div>
+    <details class="own"><summary>У меня уже есть файл модели .gguf</summary>
+      <div class="row" style="gap:8px;margin-top:8px"><input id="aiLocal" placeholder="C:\Himera\himera-9b-v1-Q4_K_M.gguf" style="flex:1"><button class="btn ghost" onclick="aiUseLocal()">Подключить</button></div>
+      <small>Скачается только движок (~40 МБ), модель возьмётся из этого файла</small>
+    </details>
+  </div>
+
+  <div class="sec"><h3>Коннекторы</h3>
+    <div class="conn">
+      <span class="cico" style="background:#2AABEE"><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.4 3.6 2.9 10.8c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.5 4.7 3.5c.7.5 1.7.1 1.9-.7l3-15.4c.2-1-.8-1.9-2.1-1.6ZM9.6 14.4l8.3-7.4-6.4 8.6-.3 2.9z"/></svg></span>
+      <span class="grow"><b>Telegram</b><small id="tgSub">Сообщения: от кого и что написали. Берётся из системных уведомлений, вход в аккаунт не нужен</small></span>
+      <input type="checkbox" class="tg" id="telegram">
+    </div>
+    <div class="msg" id="tgMsg"></div>
+    <div class="conn">
+      <span class="cico" style="background:#C66B3D"><svg viewBox="0 0 24 24" fill="#2B231D"><path d="M12 2l1.6 6.2L20 6l-4.4 4.6L22 12l-6.4 1.4L20 18l-6.4-2.2L12 22l-1.6-6.2L4 18l4.4-4.6L2 12l6.4-1.4L4 6l6.4 2.2z"/></svg></span>
+      <span class="grow"><b>Claude Code</b><small>Закончил задачу или ждёт ответа</small></span>
+      <span id="cc"></span>
+    </div>
+    <div class="msg" id="ccMsg"></div>
+    <div class="conn">
+      <span class="cico" style="background:#5865F2"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.8A8 8 0 1 1 21 12Z"/></svg></span>
+      <span class="grow"><b>Discord</b><small>Скоро</small></span>
+    </div>
+    <div class="conn">
+      <span class="cico" style="background:#8B9D83"><svg viewBox="0 0 24 24" fill="none" stroke="#2B231D" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span>
+      <span class="grow"><b>Другие приложения</b><small>Уведомления любых программ Windows на островке</small></span>
+      <input type="checkbox" class="tg" id="other_apps">
+    </div>
+    <div class="row" style="display:block;margin-top:8px"><small>Свои уведомления из скриптов и ботов на этом ПК:</small><code>POST http://127.0.0.1:47821/notify?title=…&amp;text=…</code></div>
+  </div>
+
+  <div class="sec"><h3>Буфер обмена</h3>
+    <div class="row"><span>История буфера<small>Последние 40 скопированных текстов, хранятся только на этом ПК</small></span><input type="checkbox" class="tg" id="clipboard"></div>
+  </div>
+
+  <div class="sec"><h3>Запуск</h3>
+    <div class="row"><span id="autoLbl">Запускать вместе с Windows</span><input type="checkbox" class="tg" id="autostart"></div>
+  </div>
+
+  <div class="sec"><h3>Обновления</h3>
+    <div class="row"><span>Версия <b id="ver"></b><small>Обновления приходят с island.lgscode.online</small></span><button class="btn ghost" id="chk" onclick="checkUpd()">Проверить</button></div>
+    <div class="msg" id="updMsg"></div>
+    <div class="msg" id="uiVer"></div>
+  </div>
+
+  <button class="quit" onclick="invoke('quit')">Выйти из Legends Island</button>
+</main>
+<script>
+const invoke=window.__TAURI__.core.invoke, listen=window.__TAURI__.event.listen;
+const $=id=>document.getElementById(id);
+const colors=[['Терракота','#C66B3D'],['Охра','#C08E3A'],['Шалфей','#8B9D83'],['Мох','#606C38'],['Глина','#B08B6E']];
+let S=null, sT=null;
+
+function render(){
+  $('st-float').classList.toggle('on',S.style!=='edge'); $('st-edge').classList.toggle('on',S.style==='edge');
+  document.documentElement.style.setProperty('--accent',S.color);
+  [...$('sw').children].forEach(b=>b.classList.toggle('on',b.dataset.c===S.color));
+  ['magnet','breathe','jelly','drops','pulse','notify_downloads','notify_media','autostart','telegram','other_apps','clipboard'].forEach(k=>$(k).checked=!!S[k]);
+  $('strength').value=S.strength;
+}
+function set(p,delay){ Object.assign(S,p); render(); clearTimeout(sT); sT=setTimeout(()=>invoke('save_settings',{settings:S}),delay||0); }
+
+colors.forEach(([n,c])=>{ const b=document.createElement('button'); b.style.background=c; b.title=n; b.dataset.c=c; b.onclick=()=>set({color:c}); $('sw').appendChild(b); });
+['magnet','breathe','jelly','drops','pulse','notify_downloads','notify_media','autostart','other_apps','clipboard'].forEach(k=>$(k).onchange=e=>set({[k]:e.target.checked}));
+$('telegram').onchange=async e=>{ set({telegram:e.target.checked}); if(e.target.checked){ const ok=await invoke('toasts_available'); $('tgMsg').textContent= ok ? (PLAT==='linux'?'Подключено. В Telegram Desktop включи системные уведомления: Настройки → Уведомления.':'Подключено. В Telegram Desktop должны быть включены уведомления Windows: Настройки → Уведомления → «Использовать уведомления Windows».') : 'Не получилось прочитать уведомления Windows на этом ПК.'; } else $('tgMsg').textContent=''; };
+$('strength').oninput=e=>set({strength:+e.target.value},150);
+
+async function ccRender(){
+  const on=await invoke('claude_hook_status');
+  $('cc').innerHTML = on ? '<span class="ok">Подключено</span>' : '<button class="btn" id="ccBtn">Подключить</button>';
+  if(!on) $('ccBtn').onclick=async()=>{ try{ await invoke('install_claude_hook'); $('ccMsg').textContent='Готово. Перезапусти Claude Code, чтобы он подхватил настройку.'; }catch(e){ $('ccMsg').textContent=String(e); } ccRender(); };
+}
+async function uiCheck(force){
+  const ae=document.activeElement;
+  if(!force && ae && /INPUT|TEXTAREA|SELECT/.test(ae.tagName)) return false;
+  const ui=await liRemote('settings-app.html');
+  if(ui && ui.sig!==window.__LI_SIG){ liSet('settings-app.html',ui); location.reload(); return true; }
+  return false;
+}
+function checkUpd(){ $('updMsg').textContent='Проверяю…'; invoke('check_updates'); try{ window.__TAURI__.event.emit('li_ui_check'); }catch(e){} uiCheck(true); uiStamp(); }
+async function uiStamp(){ try{ const m=await (await fetch('https://island.lgscode.online/ui/v4/manifest.json?t='+Date.now(),{cache:'no-store'})).json(); const d=new Date(m.updated); $('uiVer').textContent='Интерфейс обновляется сам, без смены версии. Сейчас на сервере: '+d.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}); }catch(e){} }
+uiStamp(); setInterval(()=>{ uiCheck(false); uiStamp(); },15000);
+listen('update',e=>{ const u=e.payload;
+  $('updMsg').textContent = u.state==='available' ? 'Доступна версия '+u.version+' — кнопка «Обновить» появилась на островке'
+    : u.state==='none' ? 'У тебя последняя версия' : u.state==='installing' ? 'Устанавливаю '+u.version+'…' : 'Не удалось проверить: '+u.version; });
+
+invoke('get_settings').then(s=>{S=s;render();});
+let appVer61=false; invoke('app_version').then(v=>{ $('ver').textContent=v; const [a,b2,c]=String(v).split('.').map(Number); appVer61=a>0||b2>6||(b2===6&&c>=1); if(typeof aiRender==='function') aiRender(); });
+ccRender();
+// ---------- Химера ----------
+let aiMan=null, aiSt=null, aiState='', aiTarget='';
+const GB=b=>(b/1073741824).toFixed(1).replace('.',',')+' ГБ';
+async function aiLoad(){
+  aiSt=await invoke('ai_status').catch(()=>null);
+  if(!aiMan){ try{ aiMan=JSON.parse(await invoke('http_get',{url:'https://island.lgscode.online/ai/manifest.json'})); }catch(e){} }
+  aiRender();
+}
+function aiRender(){
+  if(!aiSt) return;
+  const fl=appVer61&&aiMan&&aiMan.variants&&aiMan.variants[0]||null;
+  const isFl=!!(fl&&aiSt.installed&&aiSt.model_name===fl.name);
+  const cur=isFl?fl:(aiMan?aiMan.model:null);
+  const size=cur?cur.size:5.8e9, need=size+1.3e9, free=aiSt.ram_total-aiSt.ram_used;
+  if(aiMan) $('aiName').textContent=aiMan.model.name;
+  const mainOn=aiSt.installed&&!isFl;
+  $('aiSub').textContent=mainOn?(aiSt.loaded?'Установлена · сейчас в памяти':'Установлена · загрузится при первом сообщении'):'Своя нейросеть Legends — работает прямо на этом ПК, без интернета';
+  const m=$('aiMem'); m.className='aimem'+(free<need&&!aiSt.installed?' warn':'');
+  m.innerHTML=`На диске займёт <b>~${GB(size+(aiMan?aiMan.runtime.size:4e7))}</b>. Во время ответа — <b>около ${GB(need)}</b> памяти: сколько влезет, уйдёт в видеопамять, остальное в оперативку. `+
+    `Сейчас свободно <b>${GB(free)}</b> из ${GB(aiSt.ram_total)}.`+(free<need?' Может притормаживать — перед чатом лучше закрыть тяжёлые программы.':'')+
+    ` После 10 минут без вопросов Химера сама выгружается и освобождает память.`;
+  const busy=aiSt.installing, part=!aiSt.installed&&aiSt.part_bytes>0;
+  const pauseBtn='<button class="btn ghost" onclick="invoke(\'ai_cancel\')">Пауза</button>';
+  const b=$('aiBtns');
+  if(busy&&aiTarget!=='flash') b.innerHTML=pauseBtn;
+  else if(mainOn) b.innerHTML='<button class="btn ghost" onclick="aiDel(this)">Удалить</button>';
+  else if(busy) b.innerHTML='';
+  else if(part&&aiTarget!=='flash') b.innerHTML='<button class="btn" onclick="aiInstall()">Продолжить</button>';
+  else b.innerHTML=`<button class="btn${aiSt.installed?' ghost':''}" onclick="aiInstall()">${aiSt.installed?'Выбрать':'Установить'}</button>`;
+  const card=$('aiFlashCard');
+  if(fl){
+    card.style.display='';
+    $('flName').textContent=fl.name;
+    $('flSub').textContent=(fl.tagline||'для быстрой работы')+' · '+GB(fl.size)+(isFl?(aiSt.loaded?' · сейчас в памяти':' · установлена'):'');
+    const f=$('flBtns');
+    if(busy&&aiTarget==='flash') f.innerHTML=pauseBtn;
+    else if(isFl) f.innerHTML='<button class="btn ghost" onclick="aiDel(this)">Удалить</button>';
+    else if(busy) f.innerHTML='';
+    else if(part&&aiTarget==='flash') f.innerHTML='<button class="btn" onclick="aiInstall(null,\'flash\')">Продолжить</button>';
+    else f.innerHTML=`<button class="btn${aiSt.installed?' ghost':''}" onclick="aiInstall(null,'flash')">${aiSt.installed?'Выбрать':'Установить'}</button>`;
+  } else card.style.display='none';
+  $('aiProgWrap').style.display=aiSt.installing||part?'block':'none';
+  if(!aiSt.installing&&part){ const sz=aiTarget==='flash'&&fl?fl.size:size; $('aiBar').style.width=(aiSt.part_bytes/sz*100)+'%'; $('aiProgTxt').textContent='Скачано '+GB(aiSt.part_bytes)+' из '+GB(sz)+' — продолжится с того же места'; }
+}
+function aiInstall(local,variant){ $('aiMsg').textContent=''; aiTarget=variant||''; invoke('ai_install',{local:local||null,variant:variant||null}); setTimeout(aiLoad,300); }
+function aiUseLocal(){ const p=$('aiLocal').value.trim().replace(/^"|"$/g,''); if(!p.toLowerCase().endsWith('.gguf')){ $('aiMsg').textContent='Нужен путь к файлу .gguf'; return; } aiInstall(p); }
+function aiDel(btn){ if(btn.dataset.c){ invoke('ai_delete').then(aiLoad); btn.textContent='Удаляю…'; return; } btn.dataset.c=1; btn.textContent='Точно удалить?'; setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.c; btn.textContent='Удалить'; } },3000); }
+listen('ai_progress',e=>{ const p=e.payload; $('aiProgWrap').style.display='block';
+  const st=p.stage==='runtime'?'Движок llama.cpp':p.stage==='model'?'Модель':'';
+  if(p.total) $('aiBar').style.width=(p.done/p.total*100)+'%';
+  if(p.state==='download'){ const eta=p.speed>0?Math.round((p.total-p.done)/p.speed):0; $('aiProgTxt').textContent=`${st}: ${GB(p.done)} из ${GB(p.total)} · ${(p.speed/1048576).toFixed(1).replace('.',',')} МБ/с`+(eta?` · осталось ~${eta>90?Math.round(eta/60)+' мин':eta+' с'}`:''); }
+  else if(p.state==='verify') $('aiProgTxt').textContent=st+': проверяю файл…';
+  else if(p.state==='unpack') $('aiProgTxt').textContent='Распаковываю движок…';
+  else if(p.state==='retry') $('aiProgTxt').textContent=p.msg;
+  else if(p.state==='paused'){ $('aiProgTxt').textContent='Пауза — продолжится с того же места'; aiLoad(); }
+  else if(p.state==='done'){ $('aiProgWrap').style.display='none'; $('aiMsg').textContent='Готово! Химера ждёт во вкладке на островке.'; aiLoad(); }
+  else if(p.state==='error'){ $('aiMsg').textContent=p.msg; aiLoad(); }
+  if(aiState!==p.state){ aiState=p.state; if(['download','verify','unpack'].includes(p.state)) aiLoad(); }
+});
+let PLAT='windows'; invoke('platform').then(p=>{ PLAT=p; if(p==='linux'){ $('autoLbl').textContent='Запускать вместе с системой'; $('pulseRow').style.display='none'; } }).catch(()=>{});
+aiLoad(); setInterval(()=>{ if(!aiSt||!aiSt.installing) aiLoad(); },15000);
+
+</script>
+</body>
+</html>

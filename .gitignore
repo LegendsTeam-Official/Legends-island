@@ -1,0 +1,11 @@
+node_modules/
+src-tauri/target/
+src-tauri/gen/
+*.log
+*.bak*
+src-bak-*/
+# ключи подписи и секреты — никогда в репозиторий
+*.key
+*.pem
+.env
+*.gguf
